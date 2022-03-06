@@ -2,3 +2,7 @@
   text-align: center;
 }
 
+:root{
+  --button: #b48666;
+  --imageBg: #faf6f6;
+}

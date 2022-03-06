@@ -1,0 +1,104 @@
+.data-container{
+    height: 90vh;
+    width: 100%;
+    /* background:red; */
+}
+.data-container h1{
+    position: relative;
+    font-size: 2em;
+}
+.data-container h1::after{
+    position: absolute;
+    content: '';
+   margin-top: 45px;
+   margin-left: -15%;
+    height: 4px;
+    width: 100px;
+    background: var(--button);
+}
+.data-content{
+    height: 400px;
+    width: 100%;
+    /* padding: 0 10px; */
+    /* background: red; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.data-product{
+    height: 350px;
+    width: 370px;
+    /* background: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.data-product-img{
+    position: relative;
+    height: 230px;
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    background: var(--imageBg);
+    box-shadow: 0 0 5px #0003;
+    overflow: hidden;
+    /* background-position: center; */
+}
+.data-product-img img{
+    height: 100%;
+    width: 60%;
+    transition: .5s;
+    /* object-fit: cover; */
+    /* background-position: center; */
+}
+.data-product-img::before{
+    position: absolute;
+    content: '';
+    margin-left: -75px;
+    height: 230px;
+    width:  370px;
+    z-index: 1;
+    cursor: pointer;
+
+    /* transition: 1s; */
+}
+.data-product-img:hover::before{
+    background: radial-gradient(transparent, #b487666b);
+
+}
+.data-product-img:hover img{
+    transform: scale(1.1);
+}
+.data-product-details{
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3em;
+    letter-spacing: 1px;
+    /* font-weight: 100; */
+    cursor: default;
+    color: #0009;
+}
+.data-product-details h6{
+    color: var(--button);
+    font-weight: 500;
+}
+
+.data-container button{
+    padding: 10px 30px;
+    background: var(--button);
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    /* font-family: 'Satisfy', cursive; */
+    color: #ffffffc9;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.data-container button:hover{
+    color: #fff;
+}

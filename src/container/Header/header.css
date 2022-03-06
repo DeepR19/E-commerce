@@ -1,0 +1,70 @@
+
+
+.header-container{
+    height: 14vh;
+    width: 100%;
+    /* background-color: #; */
+}
+.header-link{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+.header-logo{
+    height: 100%;
+    width: 20%;
+    font-family: 'Satisfy', cursive;
+    font-size: 2.4em;
+    color: #0009;
+    font-weight: 600;
+    text-shadow: 6px 3px 5px #0004;
+    /* background: url('../../images/logo.svg');
+    background-size: 200px;
+    background-position: center;
+    background-repeat: no-repeat; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-logo span{
+    margin-left: 3px;
+    color: var(--button);
+}
+
+.header-navigation{
+    height: 100%;
+    width: 400px;
+    /* background: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-navigation li{
+    list-style: none;
+    margin: 0 20px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    /* color: #fff; */
+}
+
+.header-cart-link{
+    height: 100%;
+    width: 25%;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-cart-link li{
+    list-style: none;
+    margin: 0 10px;
+    font-size: 1.2em;
+    /* gap: 10px; */
+}
+.fa-header{
+    margin-left: 5px;
+    font-size: .9em;
+}
