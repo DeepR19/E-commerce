@@ -2,6 +2,7 @@
     height: 250px;
     width: 300px;
     margin: 20px 10px;
+    border-bottom: 1.5px solid var(--button);
 }
 .prod-page-data-img{
     height: 80%;
@@ -18,7 +19,9 @@
 .prod-page-data-details h5{
     color: var(--button);
 }
-
+.product-list-content{
+    text-decoration: none;
+}
 .product-list-content.active .prod-page-data{
     height: 200px;
     width: 100%;

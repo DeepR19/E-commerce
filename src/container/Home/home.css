@@ -59,13 +59,13 @@
 }
 @keyframes dino {
     0%{
-        background-position-y: 0;
+        background-position-y: 20px;
     }
     50%{
-        background-position-y: 30px;
+        background-position-y: 50px;
     }
     100%{
-        background-position-y: 0;
+        background-position-y: 20px;
     }
 };
 

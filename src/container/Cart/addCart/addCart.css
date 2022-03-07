@@ -1,0 +1,87 @@
+
+.addCart{
+    height: 55vh;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.addCart-container{
+    height: 100px;
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: default;
+    margin: 10px 0;
+    border-bottom: 1px solid #0002;
+}
+.addCart-container img{
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.addCart-item-detail{
+    display: flex;
+    gap: 20px;
+}
+.addCart-item p{
+    margin-top: -15px;
+}
+.addCart-price{
+    color: var(--button);
+    font-weight: 700;
+}
+.addCart-quantity{
+    font-size: 2em;
+    font-weight: bolder;
+    /* gap: 20px; */
+}
+.addCart-quantity span{
+    margin: 0 10px;
+    cursor: pointer;
+}
+.addCart-trash{
+    background: red;
+    padding: 10px;
+    border-radius: 7px;
+    color: #ffffffbb;
+    cursor: pointer;
+}
+.addCart-trash:active{
+    color: #fff;
+}
+
+
+.addCart-Box{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10%;
+    background: #f8f6f6;
+
+}
+
+
+.addCart-img{
+    height: 400px;
+    width: 400px;
+    background: url("../../../images//girl1.PNG");
+    background-size: 500px;
+    background-position: top right;
+    background-repeat: no-repeat;
+    animation: girl 3s linear infinite;
+
+}
+
+@keyframes girl {
+    0%{
+        background-position-y: -10px;
+    }
+    50%{
+        background-position-y: 20px;
+    }
+    100%{
+        background-position-y: -10px;
+    }
+};

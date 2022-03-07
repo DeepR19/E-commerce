@@ -3,6 +3,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faTableCellsLarge, faList}from '@fortawesome/free-solid-svg-icons';
 
+import { NavLink } from 'react-router-dom';
 import Data from "./productData/Data";
 
 import './list.css';
@@ -36,17 +37,15 @@ export default function List() {
 
       {/*active class for product-list-content  */}
 
-        <div className="product-list-content">
-            <Data/>
-            <Data/>
-            <Data/>
-            <Data/>
-            <Data/>
-            <Data/>
-            <Data/>
-            <Data/>
-            <Data/>
-        </div>
+            <NavLink to="/product" className='product-list-content'>
+              <Data/>
+              <Data/>
+              <Data/>
+              <Data/>
+              <Data/>
+              <Data/>
+              <Data/>
+            </NavLink>
 
     </div>
   )

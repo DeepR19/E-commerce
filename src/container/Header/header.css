@@ -51,6 +51,10 @@
     align-items: center;
     justify-content: center;
 }
+.head-nav-li{
+    text-decoration: none;
+    color: #000;
+}
 .header-navigation li{
     list-style: none;
     margin: 0 20px;

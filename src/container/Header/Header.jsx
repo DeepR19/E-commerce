@@ -16,16 +16,25 @@ export default function Header() {
             </NavLink>
 
             <div className="header-navigation">
-                <li>Home</li>
-                <li>About</li>
-                <li>Products</li>
+                <NavLink to='/' className='head-nav-li'>
+                    <li>Home</li>
+                </NavLink>
+                <NavLink to='/about' className='head-nav-li'>
+                    <li>About</li>
+                </NavLink>
+                <NavLink to='/products' className='head-nav-li'>
+                    <li>Products</li>
+                </NavLink>
+                
             </div>
 
             <div className="header-cart-link">
-                <li>
-                    Cart
-                    <FontAwesomeIcon icon={faCartShopping} className='fa-header'></FontAwesomeIcon>
-                </li>
+                <NavLink to='/cart' style={{"textDecoration": "none", "color": "#000"}}>
+                    <li>
+                        Cart
+                        <FontAwesomeIcon icon={faCartShopping} className='fa-header'></FontAwesomeIcon>
+                    </li>
+                </NavLink>
                 <li>
                     Login
                     <FontAwesomeIcon icon={faPeopleArrows} className='fa-header'></FontAwesomeIcon>

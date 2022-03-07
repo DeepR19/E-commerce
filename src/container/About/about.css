@@ -1,0 +1,59 @@
+.about-container{
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    background: var(--imageBg);
+}
+.about-img{
+    height: 100%;
+    width: 40%;
+    background: url('../../images//scooter.PNG');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 500px;
+    animation: scooter 4s linear infinite;
+}
+.about-content{
+    height: 100%;
+    flex: 1;
+    padding: 0 40px;
+    margin-top: 50px;
+    text-align: start;
+}
+.about-content h1{
+    font-size: 3em;
+    width: fit-content;
+    padding-bottom: 7px;
+    border-bottom: 4px solid var(--button);
+}
+.about-content p{
+    line-height: 30px;
+    letter-spacing: 1px;
+}
+.about-content button{
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    color: #ffffffb4;
+    background: var(--button);
+    cursor: pointer;
+    border-radius: 5px;
+}
+.about-content button:hover{
+    color: #fff;
+}
+
+
+
+
+@keyframes scooter {
+    0%{
+        background-position-y: 0;
+    }
+    50%{
+        background-position-y: 20px;
+    }
+    100%{
+        background-position-y: 0;
+    }
+};
