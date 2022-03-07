@@ -49,13 +49,41 @@
     color: #fff;
 }
 .home-image{
+    position: relative;
     height: 100%;
     width: 50%;
-    background: url("../../images/dino.PNG");
+    background: url("../../assets/Peoples/dino.PNG");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 500px;
     animation: dino 5s linear infinite;
+    transition: .4s;
+}
+
+
+@media screen and (max-width: 1023px) {
+    .home-content{
+        justify-content: center;
+    }
+    .home-data{
+        width: 80%;
+    }
+    .home-image{
+        width: 0%;
+    }
+}
+@media screen and (max-width: 650px) {
+    .home-data h3{
+        font-size: 2em
+    }
+    .home-data p{
+        font-size: 1em
+    }
+}
+@media screen and (max-width: 400px) {
+    .home-container{
+        height: 90vh;
+    }
 }
 @keyframes dino {
     0%{

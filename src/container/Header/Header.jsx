@@ -1,11 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faCartShopping, faPeopleArrows} from '@fortawesome/free-solid-svg-icons';
+import {faCartShopping, faPeopleArrows ,faBars, faXmark} from '@fortawesome/free-solid-svg-icons';
 import "./header.css";
 
 export default function Header() {
+    const [ac, setAc]= useState(faBars);
+
+    useEffect(()=>{
+        const ham = document.querySelector(".hamburgar");
+        const nav = document.querySelector(".header-link");
+
+        if(window.innerWidth < 611){
+            ham.classList.add("active");
+            nav.classList.add("active");
+        }
+        if(window.innerWidth > 611){
+            ham.classList.remove("active");
+            nav.classList.remove("active");
+        }
+
+    },[])
+    const NavActive =()=>{
+        const nav = document.querySelector(".header-link");
+        nav.classList.toggle('active');
+
+        if(nav.classList.contains("active")){
+            setAc(faXmark);
+        }else{
+            setAc(faBars);
+        }
+    }
   return (
     <div className="header-container">
         <div className="header-link">
@@ -16,20 +42,20 @@ export default function Header() {
             </NavLink>
 
             <div className="header-navigation">
-                <NavLink to='/' className='head-nav-li'>
+                <NavLink to='/' className='head-nav-li' onClick={NavActive}>
                     <li>Home</li>
                 </NavLink>
-                <NavLink to='/about' className='head-nav-li'>
+                <NavLink to='/about' className='head-nav-li' onClick={NavActive}>
                     <li>About</li>
                 </NavLink>
-                <NavLink to='/products' className='head-nav-li'>
+                <NavLink to='/products' className='head-nav-li' onClick={NavActive}>
                     <li>Products</li>
                 </NavLink>
                 
             </div>
 
             <div className="header-cart-link">
-                <NavLink to='/cart' style={{"textDecoration": "none", "color": "#000"}}>
+                <NavLink to='/cart' className="ca" style={{"textDecoration": "none", "color": "#0008"}}>
                     <li>
                         Cart
                         <FontAwesomeIcon icon={faCartShopping} className='fa-header'></FontAwesomeIcon>
@@ -42,7 +68,9 @@ export default function Header() {
             </div>
         </div>
 
-        <div className="header-pages-navigation"></div>
+        <div className="hamburgar" onClick={NavActive}>
+            <FontAwesomeIcon icon={ac} className='ham'></FontAwesomeIcon>
+        </div>
     </div>
   )
 }

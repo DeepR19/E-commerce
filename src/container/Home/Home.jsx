@@ -3,9 +3,9 @@ import Header from "../Header/Header";
 import Data from "./featureData/Data";
 import Footer from "../mainFooter/Footer"
 
-import Img1 from "../../images/camera1.PNG";
-import Img2 from "../../images/coffee1.PNG";
-import Img3 from "../../images/alarm.PNG";
+import Img1 from "../../assets/objects/camera1.PNG";
+import Img2 from "../../assets/objects/coffee1.PNG";
+import Img3 from "../../assets/objects/alarm.PNG";
 
 import { NavLink } from 'react-router-dom';
 

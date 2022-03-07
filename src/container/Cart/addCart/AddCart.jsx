@@ -1,5 +1,5 @@
 import React from 'react';
-import Img from "../../../images/alarm.PNG";
+import Img from "../../../assets/objects/alarm.PNG";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 

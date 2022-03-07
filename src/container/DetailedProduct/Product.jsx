@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from "../Header/Header";
 import Footer from "../mainFooter/Footer";
-import Img1 from "../../images/alarm.PNG";
+import Img1 from "../../assets/objects/camera1.PNG";
 
 import { NavLink } from 'react-router-dom';
 

@@ -1,13 +1,13 @@
 .data-container{
+    position: relative;
     height: 90vh;
     width: 100%;
-    /* background:red; */
 }
 .data-container h1{
     position: relative;
     font-size: 2em;
 }
-.data-container h1::after{
+/* .data-container h1::after{
     position: absolute;
     content: '';
    margin-top: 45px;
@@ -15,37 +15,32 @@
     height: 4px;
     width: 100px;
     background: var(--button);
-}
+} */
 .data-content{
-    height: 400px;
+    height: 60vh;
     width: 100%;
-    /* padding: 0 10px; */
-    /* background: red; */
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 .data-product{
-    height: 350px;
-    width: 370px;
-    /* background: red; */
+    height: 65vh;
+    width: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    transition: .5s;
 }
-
-
 .data-product-img{
     position: relative;
-    height: 230px;
+    height: 60%;
     width: 100%;
     border-radius: 10px;
     object-fit: cover;
     background: var(--imageBg);
     box-shadow: 0 0 5px #0003;
     overflow: hidden;
-    /* background-position: center; */
 }
 .data-product-img img{
     height: 100%;
@@ -58,16 +53,13 @@
     position: absolute;
     content: '';
     margin-left: -75px;
-    height: 230px;
-    width:  370px;
+    height: 100%;
+    width:  100%;
     z-index: 1;
     cursor: pointer;
-
-    /* transition: 1s; */
 }
 .data-product-img:hover::before{
     background: radial-gradient(transparent, #b487666b);
-
 }
 .data-product-img:hover img{
     transform: scale(1.1);
@@ -101,4 +93,88 @@
 }
 .data-container button:hover{
     color: #fff;
+}
+
+
+@media screen and (max-width: 1024px){
+    .data-product{
+        height: 55vh;
+        width: 30%;
+    }
+    .data-product-img::before{
+        
+        margin-left: -20%;
+        
+    }
+}
+@media screen and (max-width: 910px){
+    .data-product{
+        height: 45vh;
+        width: 30%;
+    }
+}
+@media screen and (max-width: 750px){
+    .data-product{
+        height: 40vh;
+        width: 30%;
+    }
+}
+@media screen and (max-width: 650px){
+    .data-container{
+        height: 120vh;
+        width: 100%;
+    }
+    .data-content{
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+    .data-product{
+        height: 50vh;
+        width: 40vw;
+    }
+    .data-container button{
+        position: absolute;
+        bottom: 20px;
+        right: 35%;
+    }
+}
+@media screen and (max-width: 550px){
+    .data-container{
+        height: 100vh;
+    }
+    .data-product{
+        height: 40vh;
+        width: 40vw;
+    }
+}
+@media screen and (max-width: 480px){
+    .data-container{
+        height: 150vh;
+        width: 100%;
+    }
+    .data-content{
+        grid-template-columns: auto;
+    }
+    .data-product{
+
+        height: 250px;
+        width: 120%;
+        margin-left: -20px;
+        margin-top: 10px;
+    }
+    .data-container button{
+        position: absolute;
+        bottom: 20px;
+        right: 30%;
+    }
+}
+@media screen and (max-height: 1024px){
+    .data-container{
+        height: 110vh;
+    }    
+}
+@media screen and (max-height: 700px){
+    .data-container{
+        height: 150vh;
+    }    
 }
