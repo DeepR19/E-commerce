@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { NavLink } from 'react-router-dom';
 
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCartShopping, faPeopleArrows} from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +9,11 @@ export default function Header() {
   return (
     <div className="header-container">
         <div className="header-link">
-            <div className="header-logo">Deep<span>R19</span></div>
+            <NavLink to="/" className='header-nav'>
+                <div className="header-logo">
+                    Deep<span>R19</span>
+                </div>
+            </NavLink>
 
             <div className="header-navigation">
                 <li>Home</li>

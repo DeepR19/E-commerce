@@ -1,15 +1,14 @@
 import React from 'react';
-import Img from "../../../images/alarm.PNG"
 
-export default function Data() {
+export default function Data(data) {
   return (
     <div className="data-product">
         <div className="data-product-img">
-            <img src={Img} alt="alarm" />
+            <img src={data.img} alt="alarm" />
         </div>
         <div className="data-product-details">
-            <h5>Radio</h5>
-            <h6>$599.99</h6>
+            <h5>{data.label}</h5>
+            <h6>{data.prize}</h6>
         </div>
     </div>
   )

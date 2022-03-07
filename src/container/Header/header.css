@@ -13,11 +13,19 @@
     align-items: center;
     padding: 0 20px;
 }
+.header-nav{
+    /* color: #fff; */
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .header-logo{
+    /* position: relative; */
     height: 100%;
     width: 20%;
     font-family: 'Satisfy', cursive;
-    font-size: 2.4em;
+    font-size: 2.5em;
     color: #0009;
     font-weight: 600;
     text-shadow: 6px 3px 5px #0004;
@@ -25,6 +33,7 @@
     background-size: 200px;
     background-position: center;
     background-repeat: no-repeat; */
+    /* background-color: red; */
     display: flex;
     align-items: center;
     justify-content: center;

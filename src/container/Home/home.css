@@ -34,7 +34,7 @@
     color: #0009;
     line-height: 30px;
 }
-.home-data > button{
+.home-data  button{
     background: var(--button);
     padding: 10px 20px;
     border-radius: 5px;
@@ -45,7 +45,7 @@
     cursor: pointer;
     transition: .2s;
 }
-.home-data > button:hover{
+.home-data  button:hover{
     color: #fff;
 }
 .home-image{

@@ -3,8 +3,6 @@
     width: 100%;
     background: var(--button);
     color: #ffffffaf;
-    /* font-family: cursive; */
-    border-top: 1px solid #0005;
     display: flex;
     align-items: center;
     justify-content: center;

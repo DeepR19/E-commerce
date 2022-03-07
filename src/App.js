@@ -1,5 +1,6 @@
 import Home from "./container/Home/Home";
 import Error from "./container/404/Error";
+import Products from "./container/Products/Products"
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import './App.css';
 
@@ -12,6 +13,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Home/>}/>
+          <Route exact path="/products" element={<Products/>}/>
           <Route path="*" element={<Error/>}/>
         </Routes>
       </Router>
