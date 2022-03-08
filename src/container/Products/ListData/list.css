@@ -4,6 +4,7 @@
     overflow-y: scroll;
 }
 
+
 .prod-list-header{
     display: flex;
     padding: 0 10px;
@@ -19,9 +20,15 @@
     border-radius: 5px;
     font-size: 1.1em;
     cursor: pointer;
+    overflow: hidden;
+    /* background-color: #000; */
 }
 .fa-thumb.active{
     background-color: #000;
+    height: 80%;
+    width: 80%;
+    margin-top: -1px;
+    padding: 3px;
     color: #fff;
     font-weight: bolder;
 }

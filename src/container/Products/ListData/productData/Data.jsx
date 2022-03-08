@@ -1,18 +1,24 @@
 import React from 'react';
-import Img from "../../../../assets/objects/alarm.PNG"
 import "./data.css";
 
-export default function Data() {
+export default function Data(data) {
   return (
-    <div className='prod-page-data'>
+    <div className='prod-page-data'
+     data-name={data.name}
+     data-catogery={data.catogery}
+     data-company={data.company}
+     data-color={data.color}
+     data-shipping={data.shipping}
+     data-price={data.price}>
+         
         <div className="data-product-img prod-page-data-img">
-            <img src={Img} alt="" />
+            <img src={data.img} alt={data.name} />
         </div>
 
         <div className="prod-page-dats">
             <div className="prod-page-data-details">
-                <h4>Deatils</h4>
-                <h5>$599.90</h5>
+                <h4>{data.detail}</h4>
+                <h5>{data.price}</h5>
             </div>
 
             <div className="prod-page-cont">

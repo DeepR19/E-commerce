@@ -7,6 +7,9 @@ import Footer from "../mainFooter/Footer"
 import "./product.css";
 
 export default function Products() {
+
+  
+
   return (
     <>
       <Header/>

@@ -4,10 +4,17 @@
     margin: 20px 10px;
     border-bottom: 1.5px solid var(--button);
 }
+.product-list-content.active .prod-page-data{
+    border: none;
+}
 .prod-page-data-img{
     height: 80%;
     width: 100%;
 }
+.prod-page-data-img:before{
+    margin-left: -20%;
+}
+
 .prod-page-data-details{
     display: flex;
     justify-content: space-between;
