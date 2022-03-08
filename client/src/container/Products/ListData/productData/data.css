@@ -1,6 +1,6 @@
 .prod-page-data{
-    height: 250px;
-    width: 300px;
+    height: 28ch;
+    flex: 1;
     margin: 20px 10px;
     border-bottom: 1.5px solid var(--button);
 }
@@ -98,3 +98,26 @@
     color: #fff;
 }
 
+@media screen and (max-width: 1024px){
+    .prod-page-data{
+        height: 25ch;
+    }
+    .prod-page-data-img{
+        height: 75%;
+    }
+}
+@media screen and (max-width: 850px){
+    .prod-page-data{
+        height: 25ch;
+    }
+    .prod-page-data-img{
+        height: 75%;
+    }
+}
+
+@media screen and (max-width: 520px){
+    
+    .prod-page-data{
+        width: 60%;
+    }
+}

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import "./filter.css";
 
 export default function Filter() {
@@ -98,7 +100,19 @@ export default function Filter() {
         filter("all","data-price")
     }
 
+    const handleProd =()=>{
+        const filter = document.querySelector(".product-filter");
+        filter.classList.toggle("active");
+        const filter1 = document.querySelector(".prod");
+        filter1.classList.toggle("active");
+        console.log("hello")
+    }
+
   return (
+      <>
+      <div className="prod" onClick={handleProd}>
+          <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
+      </div>
     <div className="product-filter">
         <input type="text" className='prod-search' placeholder='Search' onChange={searchHandle}/>
 
@@ -106,7 +120,7 @@ export default function Filter() {
             <h3>Category</h3>
 
             <div className="prod-cat-list">
-                <li onClick={handleCatogery}>All</li>
+                <li onClick={handleCatogery} className='active'>All</li>
                 <li onClick={handleCatogery}>Office</li>
                 <li onClick={handleCatogery}>Living Room</li>
                 <li onClick={handleCatogery}>Bedroom</li>
@@ -129,11 +143,12 @@ export default function Filter() {
         <div className="product-color">
             <h3>Color</h3>
             <div className="prod-color-list">
-                <li onClick={handleColor}>All</li>
-                <li onClick={handleColor}>red</li>
-                <li onClick={handleColor}>green</li>
-                <li onClick={handleColor}>black</li>
-                <li onClick={handleColor}>yellow</li>
+                <li onClick={handleColor} className='active'>All</li>
+                <li onClick={handleColor} className='filter-color red'></li>
+                <li onClick={handleColor} className='filter-color green'></li>
+                <li onClick={handleColor} className='filter-color black'></li>
+                <li onClick={handleColor} className='filter-color yellow'></li>
+                <li onClick={handleColor} className='filter-color blue'></li>
             </div>
         </div>
 
@@ -153,5 +168,6 @@ export default function Filter() {
 
         <button onClick={clearFilter}>Clear Filter</button>
     </div>
+    </>
   )
 }
