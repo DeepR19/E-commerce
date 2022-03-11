@@ -162,3 +162,29 @@
         /* display: none; */
     }
 }
+
+@media screen and (max-width: 500px) {
+    .product-filter{
+        margin-left: -250px;
+    }
+    .prod{
+        height: 14px;
+        width: 9px;
+        font-size: .9em;
+        margin-left: -3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media screen and (max-width: 300px) {
+    .product-filter{
+        font-size: .8em;
+    }
+
+    .filter-color{
+        height: 14px;
+        width: 14px;
+    }
+
+}

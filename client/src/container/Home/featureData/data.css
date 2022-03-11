@@ -26,6 +26,7 @@
 .data-product{
     height: 65vh;
     width: 30%;
+    /* background-color: red; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,7 +35,7 @@
 }
 .data-product-img{
     position: relative;
-    height: 60%;
+    height: 50%;
     width: 100%;
     border-radius: 10px;
     object-fit: cover;
@@ -43,7 +44,7 @@
     overflow: hidden;
 }
 .data-product-img img{
-    height: 100%;
+    height: 90%;
     width: 60%;
     transition: .5s;
     /* object-fit: cover; */
@@ -94,6 +95,7 @@
 .data-container button:hover{
     color: #fff;
 }
+
 
 
 @media screen and (max-width: 1024px){
@@ -168,13 +170,38 @@
         right: 30%;
     }
 }
-@media screen and (max-height: 1024px){
+ @media screen and (max-height: 1400px) and (max-width: 1000px){
     .data-container{
-        height: 110vh;
+        height: 70vh;
     }    
 }
-@media screen and (max-height: 700px){
+@media screen and (max-height: 750px) and (max-width: 400px){
+    .data-container{
+        height: 120vh;
+    }
+}
+@media screen and (max-height: 750px) and (max-width: 600px){
+    .data-container{
+        height: 100vh;
+    }
+}
+@media screen and (max-height: 1000px) and (max-width: 500px){
+    .data-container{
+        height: 100vh;
+    }
+}
+@media screen and (max-height: 1000px) and (max-width: 400px){
+    .data-container{
+        height: 110vh;
+    }
+}
+ @media screen and (max-height: 680px){
+    .data-container{
+        height: 140vh;
+    }    
+}
+/*@media screen and (max-height: 700px){
     .data-container{
         height: 150vh;
     }    
-}
+} */

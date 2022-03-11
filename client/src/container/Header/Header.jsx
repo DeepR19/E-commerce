@@ -7,29 +7,29 @@ import "./header.css";
 
 export default function Header() {
     const [ac, setAc]= useState(faBars);
-
+    const [size, setSize] = useState(window.innerWidth);
     useEffect(()=>{
         const ham = document.querySelector(".hamburgar");
-        const nav = document.querySelector(".header-link");
 
-        if(window.innerWidth < 611){
+        if(size < 611){
             ham.classList.add("active");
-            nav.classList.add("active");
         }
-        if(window.innerWidth > 611){
+        if(size > 611){
             ham.classList.remove("active");
-            nav.classList.remove("active");
         }
 
-    },[])
+    },[size])
     const NavActive =()=>{
-        const nav = document.querySelector(".header-link");
-        nav.classList.toggle('active');
+        if(size < 611){
+            const nav = document.querySelector(".header-link");
+            nav.classList.toggle('active');
 
-        if(nav.classList.contains("active")){
-            setAc(faXmark);
-        }else{
-            setAc(faBars);
+            if(nav.classList.contains("active")){
+                setAc(faXmark);
+            }else{
+                setAc(faBars);
+            }
+
         }
     }
   return (
@@ -37,7 +37,7 @@ export default function Header() {
         <div className="header-link">
             <NavLink to="/" className='header-nav'>
                 <div className="header-logo">
-                    Deep<span>R19</span>
+                    {/* Deep<span>R19</span> */}
                 </div>
             </NavLink>
 

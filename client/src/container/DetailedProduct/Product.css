@@ -13,6 +13,7 @@
     flex-direction: column;
     align-items: center;
     margin-right: 20px;
+    transition: .4s;
 }
 .main-sProd{
     height: 350px;
@@ -55,6 +56,8 @@
     text-align: start;
     cursor: default;
     padding: 30px 20px;
+    transition: .4s;
+
 }
 .sProduct-details h1{
     font-size: 2.3em;
@@ -131,4 +134,29 @@
 }
 .sProduct-details button:hover{
     color: #fff;
+}
+
+
+@media screen and (max-width: 690px) {
+    .sProduct-container{
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 400px) {
+    .sProduct-container{
+        font-size: .8em;
+    }
+    .main-sProd{
+        height: 300px;
+        width:  90%;
+        overflow: hidden;
+    }
+    .main-sProd  img{
+        height: 80%;
+        width:  90%;
+    }
+    .sProduct-side-img img{
+        height: 60px;
+    }
+
 }

@@ -56,30 +56,6 @@ export default function Product() {
 
 
 
-    const Desc = ()=>{
-        let div = document.querySelector(".sProduct-quantity").childNodes[1].textContent;
-        div = parseInt(div)
-
-        div = div - 1;
-        if(div === 0){
-            return
-        }
-
-        document.querySelector(".sProduct-quantity").childNodes[1].textContent = div
-        
-    }
-    const Insc = ()=>{
-        let div = document.querySelector(".sProduct-quantity").childNodes[1].textContent;
-        div = parseInt(div)
-
-        div = div + 1;
-        if(div === 9){
-            return
-        }
-        document.querySelector(".sProduct-quantity").childNodes[1].textContent = div
-        
-    };
-
     const final = [];
     const users =[];
     const data=[];
@@ -123,6 +99,7 @@ export default function Product() {
                     <img src={Img1} alt="side3" />
                 </div>
             </div>
+            
             <div className="sProduct-details">
                 <h1>{object.title}</h1>
 
@@ -170,14 +147,12 @@ export default function Product() {
                     </div>
                 </div>
 
-                <div className="sProduct-quantity">
-                    <span onClick={Desc}>-</span>
-                    1
-                    <span onClick={Insc}>+</span>
-                </div>
+                
 
                 <NavLink to="/cart" onClick={handleCart}>
-                    <button>ADD TO CART</button>
+                    <button style={
+                        {"marginTop": "20px"}
+                    }>ADD TO CART</button>
                 </NavLink>
             </div>
         </div>
