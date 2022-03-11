@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import Header from "../Header/Header";
 import Footer from "../mainFooter/Footer";
 
@@ -9,6 +9,34 @@ import { NavLink } from 'react-router-dom';
 import "./cart.css";
 
 export default function Cart() {
+  const [object, setObject] = useState([]);
+
+    useEffect(()=>{
+      const handleData = async()=>{
+          try{
+              const data = await fetch('/addToCart',{
+                  "method": "GET",
+                  headers: {
+                      "Content-Type": "application/json"
+                  } 
+              });
+              const res = await data.json();
+
+              setObject(res);
+              
+          }catch(e){
+              console.log(e);
+          }
+      };
+
+      handleData();
+      
+     },[object]);
+   
+     
+   
+      
+
   return (
       <>
         <Header/>
@@ -24,11 +52,20 @@ export default function Cart() {
             <hr />
 
             <div className="addCart">
-              <AddCart/>
-              <AddCart/>
-              <AddCart/>
-              <AddCart/>
-              <AddCart/>
+              {
+                object.map((item)=>{
+                  return(
+                    
+                    <AddCart key={item.index}
+                    data={item._id}
+                    title={item.title}
+                    price={item.price}
+                    color={item.color}/>
+                  )
+                  
+                })
+              }
+              
             </div>
 
             <hr />

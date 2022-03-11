@@ -1,23 +1,119 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from "../Header/Header";
 import Footer from "../mainFooter/Footer";
 import Img1 from "../../assets/objects/camera1.PNG";
 
-import { NavLink } from 'react-router-dom';
+import {useLocation, NavLink } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 import "./Product.css";
+import { useEffect } from 'react';
+
 
 export default function Product() {
+    const [object, setObject] = useState([]);
+    const location = useLocation();
+    
+    useEffect(()=>{
+        const handleData = async()=>{
+            try{
+                const data = await fetch(location.pathname,{
+                    "method": "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    } 
+                });
+                const res = await data.json();
+
+                setObject(res.data);
+                
+            }catch(e){
+                console.log(e);
+            }
+        };
+
+        handleData();
+        
+    },[location.pathname]);
+
+    const handleCart = async() =>{
+        try {
+            const data = await fetch("/addToCart",{
+                method: 'POST',
+                headers:{
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({object})
+            });
+            await data.json();
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+
+    const Desc = ()=>{
+        let div = document.querySelector(".sProduct-quantity").childNodes[1].textContent;
+        div = parseInt(div)
+
+        div = div - 1;
+        if(div === 0){
+            return
+        }
+
+        document.querySelector(".sProduct-quantity").childNodes[1].textContent = div
+        
+    }
+    const Insc = ()=>{
+        let div = document.querySelector(".sProduct-quantity").childNodes[1].textContent;
+        div = parseInt(div)
+
+        div = div + 1;
+        if(div === 9){
+            return
+        }
+        document.querySelector(".sProduct-quantity").childNodes[1].textContent = div
+        
+    };
+
+    const final = [];
+    const users =[];
+    const data=[];
+    
+    const handleStar = ()=>{
+        const fa=<FontAwesomeIcon icon={faStar} className='ratingStar'/>
+        
+        if(object.rating !== undefined){
+            for(let i = 0;i<(object.rating) ; i++){
+                users.push(fa)
+            }
+        }
+        if(users !== []){
+            for (let  user of users) {
+                final.push(user);
+            }
+        }
+    };
+
+    handleStar();
+    
+    if(object !== undefined && users.length>0){
+        object.desc.forEach((item)=>{
+            data.push(item);
+        })
+    }
+    
   return (
     <>
         <Header/>
 
         <div className="sProduct-container">
             <div className="sProduct-img">
-                <div className="main-sProd">
+                <div className="main-sProd" >
                     <img src={Img1} alt="main" className='sProd-main'/>
                 </div>
 
@@ -28,22 +124,28 @@ export default function Product() {
                 </div>
             </div>
             <div className="sProduct-details">
-                <h1>Modern Bookself</h1>
+                <h1>{object.title}</h1>
 
                 <div className="rating">
                     <div className="rating-star">
-                        <FontAwesomeIcon icon={faStar} className='ratingStar'/>
-                        <FontAwesomeIcon icon={faStar} className='ratingStar'/>
-                        <FontAwesomeIcon icon={faStar} className='ratingStar'/>
-                        <FontAwesomeIcon icon={faStar} className='ratingStar'/>
-                        <FontAwesomeIcon icon={faStar} className='ratingStar'/>
+                           {final} 
                     </div>
                     ( 27 customer reviews )
                 </div>
 
-                <h3>$399.99</h3>
+                <h3>$ {object.price}</h3>
 
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum soluta magni repellendus optio ducimus ipsa omnis ipsum dicta dolorem id voluptates deserunt ratione aperiam ea error atque, dolorum nesciunt maiores! Non beatae obcaecati veritatis. Nulla voluptatum voluptates iusto praesentium libero pariatur deleniti natus, atque quisquam tenetur non, quod corporis temporibus?</p>
+                <p>
+                  {
+                      data.map((item)=>{
+                          return(
+                                <li key={item.index} style={{"marginTop": "10px"}}>
+                                    {item}
+                                </li>
+                          )
+                      })
+                  }
+                </p>
 
                 <div className="additional-details">
                     <div className="add-detail1">
@@ -52,8 +154,9 @@ export default function Product() {
 
                     </div>
                     <div className="add-detail2">
-                        In Stock
-                        Samsung
+                       <li style={{"listStyle": "none"}}> In Stock</li>
+
+                        <li style={{"listStyle": "none"}}>{object.brand}</li>
                     </div>
                 </div>
 
@@ -62,19 +165,18 @@ export default function Product() {
                 <div className="sProduct-colors">
                     <h4>Colors:</h4>
                     <div className="sProd-col">
-                        <li>red</li>
-                        <li>green</li>
-                        <li>yellow</li>
+                        <li>{object.color}</li>
+                        
                     </div>
                 </div>
 
                 <div className="sProduct-quantity">
-                    <span>-</span>
+                    <span onClick={Desc}>-</span>
                     1
-                    <span>+</span>
+                    <span onClick={Insc}>+</span>
                 </div>
 
-                <NavLink to="/cart">
+                <NavLink to="/cart" onClick={handleCart}>
                     <button>ADD TO CART</button>
                 </NavLink>
             </div>

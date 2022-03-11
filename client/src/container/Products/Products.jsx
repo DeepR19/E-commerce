@@ -1,4 +1,3 @@
-import React from 'react';
 import Filter from "./filter/Filter";
 import List from "./ListData/List";
 import Header from "../Header/Header";
@@ -8,7 +7,6 @@ import "./product.css";
 
 export default function Products() {
 
-  
 
   return (
     <>

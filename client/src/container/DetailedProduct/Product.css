@@ -1,9 +1,9 @@
 .sProduct-container{
-    height: 94vh;
+    height: max-content;
     width: 98%;
     display: flex;
     background: var(--imageBg);
-    padding: 0 20px;
+    padding: 20px;
 }
 .sProduct-img{
     height: 100%;

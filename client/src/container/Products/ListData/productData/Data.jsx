@@ -2,8 +2,13 @@ import React from 'react';
 import "./data.css";
 
 export default function Data(data) {
+   const done=data.id;
+
+  
+
   return (
-    <div className='prod-page-data'
+    <div className='prod-page-data1'
+        data-key={data.id}
      data-name={data.name}
      data-catogery={data.catogery}
      data-company={data.company}

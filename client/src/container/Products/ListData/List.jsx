@@ -1,13 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faTableCellsLarge, faList}from '@fortawesome/free-solid-svg-icons';
 
 import coffee from "../../../assets/objects/coffee1.PNG";
-import alarm from "../../../assets/objects/alarm.PNG";
-import light from "../../../assets/objects/lamp1.PNG";
-import compass from "../../../assets/objects/compass1.PNG";
-import battery from "../../../assets/objects/battery.PNG";
 
 import { NavLink } from 'react-router-dom';
 import Data from "./productData/Data";
@@ -16,6 +12,35 @@ import './list.css';
 
 export default function List() {
 
+  const [learn, setLearn] = useState();
+  const [mount, setMount] = useState(true);
+
+  const checkUser = async ()=>{
+    try{
+        const res = await fetch("/data",{
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            } 
+        });
+        const data = await res.json();
+
+        setLearn(data);
+        setMount(false);
+
+    }catch(e){
+        console.log("error",e);
+    }
+  }
+
+  useEffect(()=>{
+    checkUser();
+      return(
+        learn
+      );
+  },[learn,mount]);
+  
+
   const handleBars1 =()=>{
     const dov = document.querySelector(".product-list-content");
     dov.classList.remove("active");
@@ -23,8 +48,10 @@ export default function List() {
   const handleBars2 =()=>{
     const dov = document.querySelector(".product-list-content");
     dov.classList.add("active");
+    // console.log(learn.data[0]._id)
   };
 
+ 
 
   return (
     <div className="product-list">
@@ -53,8 +80,30 @@ export default function List() {
         </div>
 
       {/*active class for product-list-content  */}
-        <NavLink to="/product" className='product-list-content'>
-          <Data name="coffee"
+      <div className="product-list-content">
+          {
+            learn && learn.data.length >0 ? 
+            learn.data.map(item=>
+            <NavLink to={`/product/${item._id}`} className='prod-page-data'>
+                <Data name={item.title}
+                key={learn.data.index}
+                id={item._id}
+                catogery="Bedroom"
+                img={coffee}
+                detail={item.title}
+                shipping="none"
+                color={item.color}
+                desc={item.desc}
+                company={item.brand}
+                price={item.price} />
+            </NavLink>
+            )
+            
+            : <h2>Loading...</h2>
+          }
+          
+          </div>
+          {/* <Data name="coffee"
             catogery="Bedroom"
             img={coffee}
             detail="Coffee"
@@ -98,7 +147,7 @@ export default function List() {
             color="yellow"
             detail="compass"
             price="903.99"/>
-        </NavLink>
+        */}
 
     </div>
   )

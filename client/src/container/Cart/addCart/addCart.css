@@ -5,6 +5,7 @@
     overflow-y: scroll;
 }
 
+
 .addCart-container{
     height: 100px;
     width: 100%;
@@ -16,6 +17,7 @@
     margin: 10px 0;
     border-bottom: 1px solid #0002;
 }
+
 .addCart-container img{
     height: 100px;
     width: 100px;
@@ -26,6 +28,16 @@
     display: flex;
     gap: 20px;
 }
+.addCart-item{
+    height: 100%;
+    width: 130px;
+    overflow: hidden;
+}
+
+.addCart-item h3{
+    overflow: hidden;
+    height: 60px;
+}
 .addCart-item p{
     margin-top: -15px;
 }
@@ -33,10 +45,16 @@
     color: var(--button);
     font-weight: 700;
 }
+
 .addCart-quantity{
     font-size: 2em;
     font-weight: bolder;
+    /* background: red; */
     /* gap: 20px; */
+}
+.addCart-quantity span::selection,
+.addCart-quantity::selection{
+    background: none;
 }
 .addCart-quantity span{
     margin: 0 10px;
