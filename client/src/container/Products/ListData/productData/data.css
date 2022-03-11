@@ -106,8 +106,11 @@
 
 @media screen and (max-width: 1440px){
     .prod-page-data{
-        height: 18ch;
+        height: 22ch;
         margin-top:80px;
+    }
+    .product-list-content.active .prod-page-data1{
+        display: flex;
     }
 }
 @media screen and (max-width: 1024px){
@@ -116,6 +119,10 @@
     }
     .prod-page-data-img{
         height: 75%;
+    }
+    .product-list-content.active .prod-page-data-img{
+        width: 30%;
+        height: 90%;
     }
 }
 
@@ -134,4 +141,10 @@
     .prod-page-data{
         width: 60%;
     }
+}
+@media screen and (max-height: 1400px) {
+    .product-list-content{
+        height: 70%;
+    }
+    
 }

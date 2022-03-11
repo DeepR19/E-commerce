@@ -10,6 +10,10 @@ import "./cart.css";
 
 export default function Cart() {
   const [object, setObject] = useState([]);
+  const [state, setState] = useState(true);
+  const [sub, setSub] = useState(1);
+  const [total, setTotal] = useState(1);
+  const shipping = document.querySelector(".cart-shipping")
 
     useEffect(()=>{
       const handleData = async()=>{
@@ -21,21 +25,93 @@ export default function Cart() {
                   } 
               });
               const res = await data.json();
+              if(state){
+                setObject(res);
+              }
 
-              setObject(res);
-              
-          }catch(e){
+            }catch(e){
               console.log(e);
-          }
+            }
+
+
+            const div1 = document.querySelector(".addCart").childNodes;
+            let data121 = 0;
+
+            div1.forEach((item)=>{
+                const data = parseFloat(item.childNodes[3].childNodes[1].textContent);
+                data121 += data;
+            });
+            setSub(data121);
+
+            if(shipping){
+              const fi = parseFloat(shipping.innerHTML)
+              setTotal(sub+fi)
+            }
+           
+          return(
+            setState(false)
+          )
+      };
+      handleData();
+     },[object, state, sub, shipping]);
+
+
+
+
+    const handleSub1 = (data)=>{
+       const div = document.querySelector(".addCart").childNodes;
+        let data112 = 0;
+
+        div.forEach((item)=>{
+            const data = parseFloat(item.childNodes[3].childNodes[1].textContent);
+            data112 += data;
+        });
+        data112 += data;
+        setSub(data112);
+
+        
+        const sub1 = parseFloat(document.querySelector(".cart-ship-sub").innerHTML) + data;
+
+        const fi = parseFloat(shipping.innerHTML)
+        setTotal(sub1+fi)
       };
 
-      handleData();
-      
-     },[object]);
-   
-     
-   
-      
+
+    const handleSub2 = (data)=>{
+       const div = document.querySelector(".addCart").childNodes;
+        let data112 = 0;
+
+        div.forEach((item)=>{
+            const data = parseFloat(item.childNodes[3].childNodes[1].textContent);
+            data112 += data;
+        });
+        data112 -= data;
+        setSub(data112);
+        
+        const sub1 = parseFloat(document.querySelector(".cart-ship-sub").innerHTML) - data;
+          const fi = parseFloat(shipping.innerHTML)
+          setTotal(sub1+fi)
+      };
+
+
+    const clearallCart =async ()=>{
+      const dova = document.querySelector(".addCart").childNodes;
+      dova.forEach((item)=>{
+        item.style.display ="none";
+      })
+
+      try {
+        const data = await fetch("/deleteCart",{
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+        await data.json();
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
   return (
       <>
@@ -52,15 +128,21 @@ export default function Cart() {
             <hr />
 
             <div className="addCart">
+
               {
+                
                 object.map((item)=>{
                   return(
                     
-                    <AddCart key={item.index}
+                    <AddCart id={item._id}
+                    key={item.id}
                     data={item._id}
                     title={item.title}
                     price={item.price}
-                    color={item.color}/>
+                    color={item.color}
+                    // parentCallback = {handleCallback}
+                    subPrice1={handleSub1}
+                    subPrice2={handleSub2}/>
                   )
                   
                 })
@@ -74,7 +156,7 @@ export default function Cart() {
               <NavLink to='/products'>
                 <button className='contShop'>Continue Shopping</button>
               </NavLink>
-              <button className='clrShop'>Clear Shopping Cart</button>
+              <button className='clrShop' onClick={clearallCart}>Clear Shopping Cart</button>
             </div>
         </div>
 
@@ -90,12 +172,12 @@ export default function Cart() {
                   <p>Shipping Fee:</p>
                 </div>
                 <div className="addCart-total-calc-price">
-                  <h5>$1,232.90</h5>
-                  <p>$5.90</p>
+                  <h5 className='cart-ship-sub'>{sub.toFixed(2)}</h5>
+                  <p className='cart-shipping'>5.90</p>
                 </div>
               </div>
               <hr />
-              <h2>Order Total : $1,234.87</h2>
+              <h2>Order Total : ${total.toFixed(2)}</h2>
             </div>
             <button className='addCart-total-button'>LOGIN</button>
           </div>

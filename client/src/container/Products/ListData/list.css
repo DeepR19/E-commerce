@@ -95,6 +95,8 @@
     .product-list-content{
         grid-template-columns: auto auto;
         width: 100%;
+        /* background: red; */
+        margin-left: 10px;
     }
 }
 @media screen and (max-width: 620px){
@@ -127,8 +129,8 @@
         grid-template-columns: auto;
         width: 100%;
         display: flex;
-        /* justify-content: center; */
         align-items: center;
         flex-direction: column;
     }
+    
 }

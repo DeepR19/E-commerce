@@ -9,43 +9,56 @@ export default function AddCart(item) {
 
     const [id, setId] =useState({});
 
+    const [price, setPrice] = useState((item.price).toFixed(2));
+
+    // console.log(item.id)
     const Desc = (e)=>{
         const liv = e.target.parentElement.parentElement;
         let div = liv.childNodes[2].childNodes[1].textContent;
         div = parseInt(div)
 
         div = div - 1;
+
+        let sub1 = price;
+        sub1 = (sub1-item.price).toFixed(2);
+
         if(div === 0){
             return
         }
 
         liv.childNodes[2].childNodes[1].textContent = div
         
+        setPrice(sub1);
+        // item.parentCallback(sub1);
+        item.subPrice2(item.price);
     }
     const Insc = (e)=>{
+        let sub1 = price;
+        
         const liv = e.target.parentElement.parentElement;
         let div = liv.childNodes[2].childNodes[1].textContent
         div = parseInt(div)
-
+        
         div = div + 1;
+        sub1 = (div*item.price).toFixed(2);
+        
         if(div === 9){
             return
         }
         liv.childNodes[2].childNodes[1].textContent = div
-        
+  
+        setPrice(sub1);
+        // item.parentCallback(sub1);
+        item.subPrice1(item.price);
+
     };
 
-
     const handleDelete =async (e)=>{
+        let data1 = e.target.parentElement.getAttribute("data-key");
+        setId(data1);
+
         try{
 
-            const fa = e.target.parentElement.getAttribute("data-icon");
-            let data1 = e.target.parentElement;
-            
-            if(fa){
-                data1= data1.parentElement.parentElement.getAttribute("data-key");
-                setId(data1);
-            }
             const data = await fetch('/addToCart',{
                 method: "delete",
                 headers: {
@@ -61,6 +74,10 @@ export default function AddCart(item) {
         }
     };
 
+    const handleDis = (e) =>{
+        const div = e.target.parentElement;
+        div.style.display ="none";
+    }
 
   return (
     <div className="addCart-container"
@@ -68,9 +85,11 @@ export default function AddCart(item) {
     data-title={item.title}
     data-price={item.price}
     data-color={item.color}
-    key={item.key}>
+    key={item.id}
+    >
         <div className="addCart-item-detail">
-            <img src={Img} alt="" />
+            <img src={Img} alt="main" 
+            />
 
             <div className="addCart-item">
                 <h3>{item.title}</h3>
@@ -89,11 +108,11 @@ export default function AddCart(item) {
         </div>
 
         <div className="addCart-subtotal">
-            ${item.price}
+            ${price}
         </div>
 
-        <div className='addCart-trash' onClick={handleDelete}>
-            <FontAwesomeIcon icon={faTrashCan}  />
+        <div className='addCart-trash' onDoubleClick={handleDis} onClick={handleDelete} title='make double click'>
+            <FontAwesomeIcon icon={faTrashCan} className='trash' />
         </div>
     </div>
   )

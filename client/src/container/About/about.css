@@ -44,7 +44,20 @@
 }
 
 
-
+@media screen and (max-width: 1024px) {
+    .about-img{
+        display: none;
+    }
+}
+@media screen and (max-width: 660px) {
+    .about-container{
+        height: 140vh;
+    }
+    .about-content{
+        font-size: .9em;
+        text-align: justify;
+    }
+}
 
 @keyframes scooter {
     0%{

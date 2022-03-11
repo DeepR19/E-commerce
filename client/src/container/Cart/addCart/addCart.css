@@ -1,11 +1,15 @@
 
 .addCart{
     height: 55vh;
-    width: 100%;
+    width: 95%;
     overflow-y: scroll;
+    box-shadow:inset 0 0 5px #0007;
 }
 
 
+.addCart-container.active{
+    display: none;
+}
 .addCart-container{
     height: 100px;
     width: 100%;
@@ -19,9 +23,10 @@
 }
 
 .addCart-container img{
-    height: 100px;
-    width: 100px;
+    height: 90px;
+    width: 90px;
     object-fit: cover;
+    margin-top: 12px;
     border-radius: 10px;
 }
 .addCart-item-detail{
@@ -67,8 +72,12 @@
     color: #ffffffbb;
     cursor: pointer;
 }
+
 .addCart-trash:active{
     color: #fff;
+}
+.addCart-trash> *{
+    pointer-events: none;
 }
 
 
