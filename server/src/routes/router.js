@@ -72,4 +72,15 @@ router.route("/addToCart")
 })
 
 
+
+router.route('/deleteCart')
+.delete(async (req, res)=>{
+    try {
+        const data = await userSchema.remove({});
+        res.status(200).json({data})
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 module.exports =router;
