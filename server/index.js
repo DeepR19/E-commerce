@@ -16,8 +16,10 @@ app.use(bodyparser.json());
 require("./src/db/conn");
 
 const router = require('./src/routes/router');
+const accessRouter = require('./src/routes/accessRouter');
 
 app.use("/", router);
+app.use("/user",accessRouter)
 
 const PORT = 5000;
 
