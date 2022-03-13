@@ -1,10 +1,12 @@
 
 
 .header-container{
-    height: 14vh;
+    height: 10vh;
     width: 100%;
+
 }
 .header-link{
+    margin-top: 10px;
     height: 100%;
     width: 100%;
     display: flex;
@@ -123,7 +125,9 @@
     cursor: pointer;
     z-index: 1000;
 }
-
+.cartLink1:hover{
+    color: #000;
+}
 
 @media screen and (max-width: 1500px) {
     .hamburgar.active{

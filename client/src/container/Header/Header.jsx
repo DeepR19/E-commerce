@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faCartShopping, faPeopleArrows ,faBars, faXmark} from '@fortawesome/free-solid-svg-icons';
+import {faCartShopping, faBars, faXmark, faSignIn, faSignOut, faPersonDotsFromLine} from '@fortawesome/free-solid-svg-icons';
 import "./header.css";
 
 export default function Header() {
     const [ac, setAc]= useState(faBars);
     const [size, setSize] = useState(window.innerWidth);
+
+    const user= true;
+
     useEffect(()=>{
         const ham = document.querySelector(".hamburgar");
 
@@ -18,7 +21,8 @@ export default function Header() {
             ham.classList.remove("active");
         }
 
-    },[size])
+    },[size]);
+
     const NavActive =()=>{
         if(size < 611){
             const nav = document.querySelector(".header-link");
@@ -31,13 +35,64 @@ export default function Header() {
             }
 
         }
+    };
+
+    const logout = async()=>{
+        try{
+            const res = await fetch('/user/logout',{
+                method: "GET",
+                headers: {
+                    'Content-Type': "application/json"
+                }
+            });
+            const data = await res.json();
+            console.log(data)
+        }catch(err){
+            console.log(err)
+        }
+    };
+
+    const UserStatus =()=>{
+        if(user){
+            return(
+                <>
+                    <NavLink to ='/cart' className="cartLink1" style={{"textDecoration": "none", "color": "#0008"}}>
+                        <li>
+                            Cart
+                            <FontAwesomeIcon icon={faCartShopping} className='fa-header'></FontAwesomeIcon>
+                        </li>
+                    </NavLink>
+                    <li onClick={logout} className="cartLink1" style={{"cursor": "pointer" , "color": "#0008", "fontWeight": "bold"}}>
+                        Logout
+                        <FontAwesomeIcon icon={faSignOut} className='fa-header'></FontAwesomeIcon>
+                    </li>
+                </>
+            )
+        }else{
+            return(<>
+                <NavLink to ='/login' style={{"textDecoration": "none", "color": "#0009", "fontWeight": "bolder"}}>
+                    <li>
+                        Login
+                        <FontAwesomeIcon icon={faPersonDotsFromLine} className='fa-header'></FontAwesomeIcon>
+                    </li>
+                </NavLink>
+                <NavLink to ='/signup' style={{"textDecoration": "none", "color": "#0009", "fontWeight": "bolder"}}>
+                    <li>
+                        SignUp
+                        <FontAwesomeIcon icon={faSignIn} className='fa-header'></FontAwesomeIcon>
+                    </li>
+                </NavLink>
+                </>
+            )
+        }
     }
+
+
   return (
     <div className="header-container">
         <div className="header-link">
             <NavLink to="/" className='header-nav'>
                 <div className="header-logo">
-                    {/* Deep<span>R19</span> */}
                 </div>
             </NavLink>
 
@@ -55,16 +110,7 @@ export default function Header() {
             </div>
 
             <div className="header-cart-link">
-                <NavLink to='/cart' className="ca" style={{"textDecoration": "none", "color": "#0008"}}>
-                    <li>
-                        Cart
-                        <FontAwesomeIcon icon={faCartShopping} className='fa-header'></FontAwesomeIcon>
-                    </li>
-                </NavLink>
-                <li>
-                    Login
-                    <FontAwesomeIcon icon={faPeopleArrows} className='fa-header'></FontAwesomeIcon>
-                </li>
+                <UserStatus/>
             </div>
         </div>
 

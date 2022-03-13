@@ -1,0 +1,66 @@
+.sign-wrapper{
+    height: 94%;
+    width: 60%;
+}
+
+.sign-wrapper form{
+    margin-top: -30px;
+}
+.sign-wrapper h3{
+    margin-bottom: 0;
+    font-size: 2em;
+    letter-spacing: 1px;
+    color: #0009;
+    cursor: default;
+}
+.sign-field{
+    height: 20px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    margin: 20px 0;
+}
+.sign-field label{
+    font-size: .7em;
+    color: var(--button);
+    font-weight: 600;
+    margin-left: 4px;
+    margin-bottom: 3px;
+}
+.sign-field input{
+    font-size: 1em;
+    border: none;
+    outline: none;
+    border-bottom: 1.6px solid #0004;
+    color: #0008;
+    padding-left: 4px;
+}
+
+.sign-wrapper button{
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    font-size: .9em;
+    padding: 7px 40px;
+    border-radius: 7px;
+    background: var(--button);
+    color: #ffffffbb;
+    cursor: pointer;
+}
+.sign-wrapper button:active{
+    transform: translateY(3px);
+    color: #fff;
+
+}
+.sign-wrapper button:hover{
+    color: #fff;
+}
+
+.signImg img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;   
+    border-top-left-radius: 10px; 
+    border-bottom-left-radius: 10px; 
+}
