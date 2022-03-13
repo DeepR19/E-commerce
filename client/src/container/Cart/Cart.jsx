@@ -4,12 +4,14 @@ import Footer from "../mainFooter/Footer";
 
 import AddCart from './addCart/AddCart';
 
-import { NavLink } from 'react-router-dom';
+import { Navigate, NavLink, useNavigate } from 'react-router-dom';
 
 import "./cart.css";
 
 export default function Cart() {
   const [object, setObject] = useState([]);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate()
   const [state, setState] = useState(true);
   const [sub, setSub] = useState(1);
   const [total, setTotal] = useState(1);
@@ -25,6 +27,7 @@ export default function Cart() {
                   } 
               });
               const res = await data.json();
+              
               if(state){
                 setObject(res);
               }
@@ -32,65 +35,102 @@ export default function Cart() {
             }catch(e){
               console.log(e);
             }
-
-
-            const div1 = document.querySelector(".addCart").childNodes;
-            let data121 = 0;
-
-            div1.forEach((item)=>{
-                const data = parseFloat(item.childNodes[3].childNodes[1].textContent);
-                data121 += data;
-            });
-            setSub(data121);
-
-            if(shipping){
-              const fi = parseFloat(shipping.innerHTML)
-              setTotal(sub+fi)
-            }
-           
           return(
             setState(false)
           )
       };
       handleData();
-     },[object, state, sub, shipping]);
+     },[object, state]);
 
 
+     useEffect(()=>{
+       console.log(object)
+       if(object.length>0 ){
+        
+         const div1 = document.querySelector(".addCart").childNodes;
+         let data121 = 0;
+         
+         div1.forEach((item)=>{
+           const data = parseFloat(item.childNodes[3].childNodes[1].textContent);
+           data121 += data;
+          });
+          setSub(data121);
+          
+          if(shipping){
+            const fi = parseFloat(shipping.innerHTML)
+            setTotal(sub+fi)
+          }
+        }
+     },[shipping, sub, object])
 
+
+     useEffect(()=>{
+      const handle = async ()=>{
+          try{
+              const data = await fetch("/user/info", {
+                  method : "GET",
+                  headers: {
+                      "Content-Type": "application/json"
+                  },
+                  credentials: "include"
+              });
+              const res = await data.json();
+              setUser(res.token);
+
+              if(!res || data.status === 400){
+                navigate("/")
+              }
+              if(res.token){
+                navigate('/cart')
+              }
+          }catch(err){
+              console.log(err);
+          }
+      };
+  
+      handle();
+  },[navigate]);
+    
 
     const handleSub1 = (data)=>{
        const div = document.querySelector(".addCart").childNodes;
-        let data112 = 0;
+       if(div){
 
-        div.forEach((item)=>{
-            const data = parseFloat(item.childNodes[3].childNodes[1].textContent);
-            data112 += data;
-        });
-        data112 += data;
-        setSub(data112);
-
-        
-        const sub1 = parseFloat(document.querySelector(".cart-ship-sub").innerHTML) + data;
-
-        const fi = parseFloat(shipping.innerHTML)
-        setTotal(sub1+fi)
+         let data112 = 0;
+         
+         div.forEach((item)=>{
+           const data = parseFloat(item.childNodes[3].childNodes[1].textContent);
+           data112 += data;
+          });
+          data112 += data;
+          setSub(data112);
+          
+          
+          const sub1 = parseFloat(document.querySelector(".cart-ship-sub").innerHTML) + data;
+          
+          const fi = parseFloat(shipping.innerHTML)
+          setTotal(sub1+fi)
+        }
       };
 
 
     const handleSub2 = (data)=>{
-       const div = document.querySelector(".addCart").childNodes;
-        let data112 = 0;
+      const div = document.querySelector(".addCart").childNodes;
+      if(div){
 
-        div.forEach((item)=>{
-            const data = parseFloat(item.childNodes[3].childNodes[1].textContent);
-            data112 += data;
-        });
-        data112 -= data;
-        setSub(data112);
+          let data112 = 0;
         
-        const sub1 = parseFloat(document.querySelector(".cart-ship-sub").innerHTML) - data;
-          const fi = parseFloat(shipping.innerHTML)
-          setTotal(sub1+fi)
+          div.forEach((item)=>{
+                const data = parseFloat(item.childNodes[3].childNodes[1].textContent);
+                data112 += data;
+            });
+            data112 -= data;
+            setSub(data112);
+          
+            const sub1 = parseFloat(document.querySelector(".cart-ship-sub").innerHTML) - data;
+              const fi = parseFloat(shipping.innerHTML)
+              setTotal(sub1+fi)
+        }
       };
 
 
@@ -112,7 +152,6 @@ export default function Cart() {
         console.log(error);
       }
     }
-
   return (
       <>
         <Header/>
@@ -134,13 +173,12 @@ export default function Cart() {
                 object.map((item)=>{
                   return(
                     
-                    <AddCart id={item._id}
-                    key={item.id}
+                    <AddCart
+                    key={item._id}
                     data={item._id}
                     title={item.title}
                     price={item.price}
                     color={item.color}
-                    // parentCallback = {handleCallback}
                     subPrice1={handleSub1}
                     subPrice2={handleSub2}/>
                   )

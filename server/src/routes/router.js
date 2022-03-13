@@ -4,6 +4,7 @@ const router = express.Router();
 
 const objectSchema= require('../model/objectSchema');
 const userSchema= require('../model/userSchema');
+const cartSchema= require('../model/cartSchema');
 
 // router.use(bodyParser.json());
 
@@ -46,7 +47,7 @@ router.route("/product/:id")
 router.route("/addToCart")
 .get(async(req, res)=>{
     try {
-        const data = await userSchema.find();
+        const data = await cartSchema.find();
         res.status(200).json(data);
     } catch (error) {
         console.log(error)
@@ -55,8 +56,8 @@ router.route("/addToCart")
 .post(async(req, res)=>{
     try{
         console.log(req.body);
-        const ack = await userSchema.create(req.body.object);
-        res.status(200).send(ack)
+        const ack = await cartSchema.create(req.body.object);
+        res.status(200).send(ack);
     }catch(err){
         res.status(400).send(err);
     }
@@ -64,7 +65,7 @@ router.route("/addToCart")
 .delete(async(req, res)=>{
     try{
         console.log(req.body.id);
-        const ack = await userSchema.findByIdAndDelete(req.body.id);
+        const ack = await cartSchema.findByIdAndDelete(req.body.id);
         res.status(200).send(ack)
     }catch(err){
         res.status(400).send(err);
@@ -76,7 +77,7 @@ router.route("/addToCart")
 router.route('/deleteCart')
 .delete(async (req, res)=>{
     try {
-        const data = await userSchema.remove({});
+        const data = await cartSchema.remove({});
         res.status(200).json({data})
     } catch (error) {
         console.log(error)

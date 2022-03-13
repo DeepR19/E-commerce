@@ -1,16 +1,17 @@
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faGithub, faGoogle, faLinkedinIn} from '@fortawesome/free-brands-svg-icons';
 import React from 'react';
 import Header from '../Header/Header';
 import "./login.css";
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Login() {
     const [email , setEmail] = useState("");
     const [pass , setPass] = useState("");
-
-    const [user, setUser]= useState();
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate();
 
    const handleLogin = async (e)=>{
        e.preventDefault();
@@ -25,13 +26,26 @@ export default function Login() {
            });
 
            const res = await data.json();
-        //    console.log(res)
-            setUser(res);
+           if(data.status === 400 || !res)
+           {
+               console.log("error");
+            }
+            else{
+                navigate("/")
+                setUser(res);
+            }
+
        } catch (error) {
-        console.log(error);
+        console.log("Login",error);
        }
    };
 
+   const google = ()=>{
+        window.open("http://localhost:5000/auth/google", "_self")
+   };
+   const github = ()=>{
+        window.open("http://localhost:5000/auth/github", "_self")
+    };
    
 
   return (
@@ -41,11 +55,11 @@ export default function Login() {
 
             <div className="login-wrapper">
                 <div className="login-left">
-                    <div className="login-link google">
+                    <div className="login-link google" onClick={google}>
                         <FontAwesomeIcon icon={faGoogle}/>
                         Google
                     </div>
-                    <div className="login-link github">
+                    <div className="login-link github" onClick={github}>
                         <FontAwesomeIcon icon={faGithub}/>
                         Github
                     </div>

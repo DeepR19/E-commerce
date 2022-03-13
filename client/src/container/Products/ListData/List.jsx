@@ -86,7 +86,7 @@ export default function List() {
             learn.data.map(item=>
             <NavLink to={`/product/${item._id}`} className='prod-page-data'>
                 <Data name={item.title}
-                key={learn.data.index}
+                key={item._id}
                 id={item._id}
                 catogery="Bedroom"
                 img={coffee}

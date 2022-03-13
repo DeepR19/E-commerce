@@ -2,8 +2,10 @@ import React , {useState}from 'react';
 import Header from '../Header/Header';
 import Img from "../../assets/sign.jpg"
 import "./SignUp.css";
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
+    const navigate = useNavigate();
     const [user, setUser] = useState({
         Fname: "",
         Lname: "",
@@ -25,15 +27,15 @@ export default function SignUp() {
                 body: JSON.stringify({user})
             });
  
-            const res = await data.json();
-            console.log(res);
-
+            await data.json();
+            if(data.status === 200){
+                navigate("/login");
+            }
         } catch (error) {
             console.error("Please check detials")
          console.log(error);
         }
     };
-
 
 
     const handleChange = (e)=>{

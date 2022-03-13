@@ -9,7 +9,7 @@ export default function AddCart(item) {
 
     const [id, setId] =useState({});
 
-    const [price, setPrice] = useState((item.price).toFixed(2));
+    const [price, setPrice] = useState((item.price));
 
     // console.log(item.id)
     const Desc = (e)=>{
@@ -54,9 +54,8 @@ export default function AddCart(item) {
     };
 
     const handleDelete =async (e)=>{
-        let data1 = e.target.parentElement.getAttribute("data-key");
+        let data1 = e.target.parentElement.getAttribute("data-data");
         setId(data1);
-
         try{
 
             const data = await fetch('/addToCart',{
@@ -81,11 +80,10 @@ export default function AddCart(item) {
 
   return (
     <div className="addCart-container"
-    data-key={item.data}
     data-title={item.title}
     data-price={item.price}
     data-color={item.color}
-    key={item.id}
+    data-data={item.data}
     >
         <div className="addCart-item-detail">
             <img src={Img} alt="main" 

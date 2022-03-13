@@ -1,16 +1,29 @@
 const accessRouter= require("express").Router();
 const userSchema = require("../model/userSchema");
+const auth = require('../middleware/auth')
 const bcrypt = require("bcryptjs");
 
+accessRouter.get("/info", auth , async (req, res)=>{
+    try{
+
+        res.status(200).json({
+            token:req.token,
+            user: req.rootUser,
+            id: req.userId
+        })
+    }catch(error){
+        res.status(400).json({
+            message: error
+        })
+    }
+})
 
 accessRouter.route("/login")
 .post(async (req, res)=>{
     try{
     const {email, pass} = req.body;
 
-    console.log(email, pass)
     if(!email || !pass){
-        console.log("wrong")
         res.status(400).json({message: "something went wrong!!"});
         return;
     }
@@ -24,7 +37,7 @@ accessRouter.route("/login")
         if(match){
             token = await user.generateToken();
     
-            res.cookie("jwt-Ecommerce", token, {
+            res.cookie("jwtEcommerce", token, {
                 expires: new Date(Date.now() + 25892000000),
                 httpOnly: true
             });
@@ -75,10 +88,14 @@ accessRouter.route("/signup")
     }
 });
 
-accessRouter.get("/logout", (req,res) => {
-    res.clearCookie('jwtoken', {path: '/'});
-    res.status(200).send("User Logout");
-});
+accessRouter.get('/logout', (req, res) => {
+    res.session.destroy();
+    res.clearCookie('jwtEcommerce', {path: '/'});
+    res.status(200).json({
+            message: "Done!"
+        });
+  });
+  
 
 
 module.exports = accessRouter;

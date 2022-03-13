@@ -1,4 +1,11 @@
-
+.login-user-image{
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #0002;
+    padding: 3px;
+}
 
 .header-container{
     height: 10vh;
