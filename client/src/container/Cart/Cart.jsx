@@ -42,9 +42,7 @@ export default function Cart() {
       handleData();
      },[object, state]);
 
-
      useEffect(()=>{
-       console.log(object)
        if(object.length>0 ){
         
          const div1 = document.querySelector(".addCart").childNodes;
@@ -152,6 +150,7 @@ export default function Cart() {
         console.log(error);
       }
     }
+
   return (
       <>
         <Header/>

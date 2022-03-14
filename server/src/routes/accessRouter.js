@@ -3,6 +3,7 @@ const userSchema = require("../model/userSchema");
 const auth = require('../middleware/auth')
 const bcrypt = require("bcryptjs");
 
+
 accessRouter.get("/info", auth , async (req, res)=>{
     try{
 
@@ -89,7 +90,7 @@ accessRouter.route("/signup")
 });
 
 accessRouter.get('/logout', (req, res) => {
-    res.session.destroy();
+    req.logout();
     res.clearCookie('jwtEcommerce', {path: '/'});
     res.status(200).json({
             message: "Done!"

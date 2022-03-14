@@ -15,6 +15,7 @@ const title= "E-Commerce | DeepR19"
 function App() {
 
   const [user, setUser] = useState(null);
+  const [user1, setUser1] = useState(null);
 
   document.title = title;
   useEffect(()=>{
@@ -31,7 +32,7 @@ function App() {
         if(response.status === 200) return response.json();
         throw new Error("authentication failed");
       }).then(resObj =>{
-        setUser(resObj.user);
+        setUser1(resObj.user);
       }).catch(error=>{
         console.log(error);
       })
@@ -53,7 +54,7 @@ function App() {
             });
             const res = await data.json();
             if(data.status === 200){
-              setUser(res.token);
+              setUser(res);
             }
         }catch(err){
             setUser(null)
@@ -64,6 +65,7 @@ function App() {
     handle();
 },[user]);
   
+// console.log("user",user.user._id)
   return (
     <div className="App">
       <Router>
@@ -73,7 +75,7 @@ function App() {
           <Route exact path="/login" element={user? <Navigate to='/'/>:<Login/>}/>
           <Route exact path="/signup" element={<SignUp/>}/>
           <Route exact path="/products" element={<Products/>}/>
-          <Route exact path="/product/:id" element={<Product/>}/>
+          <Route exact path="/product/:id" element={<Product user={user}/>}/>
           <Route exact path="/cart" element={user? <Cart/>: <Navigate to='/login'/>}/>
           <Route exact path="/about" element={<About/>}/>
           <Route path="*" element={<Error/>}/>

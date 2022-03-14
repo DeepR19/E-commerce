@@ -12,8 +12,14 @@ import "./Product.css";
 import { useEffect } from 'react';
 
 
-export default function Product() {
+export default function Product(user) {
     const [object, setObject] = useState([]);
+    const [object1, setObject1] = useState({
+        title: "",
+        price: null,
+        _id: "",
+        userId:null
+    });
     const location = useLocation();
     
     useEffect(()=>{
@@ -28,6 +34,10 @@ export default function Product() {
                 const res = await data.json();
 
                 setObject(res.data);
+                setObject1({title: res.data.title,
+                    price: res.data.price,
+                    _id:res.data._id
+                    });
                 
             }catch(e){
                 console.log(e);
@@ -45,7 +55,7 @@ export default function Product() {
                 headers:{
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({object})
+                body: JSON.stringify(object1)
             });
             await data.json();
 

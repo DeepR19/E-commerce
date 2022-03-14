@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import Img from "../../assets/objects/alarm.PNG"
+import Img1 from "../../assets/objects/alarm.PNG"
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCartShopping, faBars, faXmark, faSignIn, faSignOut, faPersonDotsFromLine} from '@fortawesome/free-solid-svg-icons';
 import "./header.css";
 
 export default function Header () {
     const [ac, setAc]= useState(faBars);
-    const [size, setSize] = useState(window.innerWidth);
+    const size =window.innerWidth;
     const [token, setToken] = useState(null);
     const [user, setUser] = useState(null);
-    const [LoginImg, setImg] = useState(Img);
+    const [Img, setImg] = useState();
+    const [loginImg, setLoginImg] = useState();
 
+    
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -74,6 +76,14 @@ export default function Header () {
         getUser();
       },[])
 
+    useEffect(()=>{
+        if(user){
+            setLoginImg(Img)
+        }else{
+            setLoginImg(Img1)
+        }
+    },[user, Img])
+
     const NavActive =()=>{
         if(size < 611){
             const nav = document.querySelector(".header-link");
@@ -117,9 +127,9 @@ export default function Header () {
                     </NavLink>
 
                     <div className="user-login-details">
-                        <img src={LoginImg} alt="user pic" className='login-user-image'/>
+                        <img src={loginImg} alt="user pic" className='login-user-image'/>
                         <div className="user-login-details2">
-                            {user.displayName}
+                            {user? user.displayName || user.Fname: null}
 
                             <li onClick={logout} className="cartLink1"  style={{"textDecoration": "none","color":"#0008", "cursor": "pointer"}}>
                                 Logout
@@ -148,6 +158,8 @@ export default function Header () {
             )
         }
     };
+
+   
 
   return (
     <div className="header-container">

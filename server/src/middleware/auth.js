@@ -9,7 +9,6 @@ const auth = async (req, res, next) => {
         const verifyToken = jwt.verify(token, "mynameisdeepakfromcomputerbranch");
 
         const id = verifyToken;
-        // console.log(id)
         const rootUser = await userSchema.findOne({_id: id._id, "tokens.token": token});
 
         if(!rootUser){ 

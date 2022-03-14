@@ -29,6 +29,7 @@ const userSchema= new mongoose.Schema({
         type: String,
         require: (true, "Please provide password")
     },
+
     tokens:[
         {
             token: {
@@ -39,6 +40,7 @@ const userSchema= new mongoose.Schema({
     ]
   
 });
+
 
 userSchema.pre("save",async function(next){
     if(this.isModified("pass")){

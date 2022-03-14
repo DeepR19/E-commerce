@@ -5,7 +5,10 @@ const cartSchema= new mongoose.Schema({
         type: String,
         require: (true, "Please provide title of object")
     },
-    
+    userId:{
+        type: mongoose.Schema.ObjectId,
+        ref: "user"        
+    },
     price:{
         type: Number,
         require: (true, "Please provide price of object")
@@ -16,6 +19,15 @@ const cartSchema= new mongoose.Schema({
     }
     
 });
+
+cartSchema.pre(/^find/,function(next){
+    this.populate({
+        path:"userId",
+        select:"Fname email"
+    });
+
+    next();
+})
 
 const object = new mongoose.model("cart",cartSchema);
 
