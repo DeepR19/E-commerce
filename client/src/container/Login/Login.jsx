@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faGithub, faGoogle, faLinkedinIn} from '@fortawesome/free-brands-svg-icons';
+import {faGithub, faGoogle} from '@fortawesome/free-brands-svg-icons';
 import React from 'react';
 import Header from '../Header/Header';
 import "./login.css";
@@ -63,10 +63,10 @@ export default function Login() {
                         <FontAwesomeIcon icon={faGithub}/>
                         Github
                     </div>
-                    <div className="login-link linkedin">
+                    {/* <div className="login-link linkedin">
                         <FontAwesomeIcon icon={faLinkedinIn}/>
                         LinkedinIn
-                    </div>
+                    </div> */}
                 </div>
                 <div className="login-line"></div>
                 <div className="login-right">

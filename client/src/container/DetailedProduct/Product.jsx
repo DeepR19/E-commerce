@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from "../Header/Header";
 import Footer from "../mainFooter/Footer";
 import Img1 from "../../assets/objects/camera1.PNG";
@@ -9,11 +9,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 import "./Product.css";
-import { useEffect } from 'react';
 
 
 export default function Product(user) {
     const [object, setObject] = useState([]);
+    const [comment, setComment] = useState({});
     const [object1, setObject1] = useState({
         title: "",
         price: null,
@@ -92,78 +92,102 @@ export default function Product(user) {
         })
     }
     
+    const son =async ()=>{
+        try {
+            console.log(user)
+            // const data = await fetch(`/product/${user._id}`,{
+            //     method: 'POST',
+            //     headers:{
+            //         "Content-Type": "application/json"
+            //     },
+            //     body: JSON.stringify({comment})
+            // });
+            // await data.json();
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
   return (
     <>
         <Header/>
 
         <div className="sProduct-container">
-            <div className="sProduct-img">
-                <div className="main-sProd" >
-                    <img src={Img1} alt="main" className='sProd-main'/>
-                </div>
+            <div className="sProd-data">
 
-                <div className="sProduct-side-img">
-                    <img src={Img1} alt="side1" />
-                    <img src={Img1} alt="side2" />
-                    <img src={Img1} alt="side3" />
-                </div>
-            </div>
-            
-            <div className="sProduct-details">
-                <h1>{object.title}</h1>
-
-                <div className="rating">
-                    <div className="rating-star">
-                           {final} 
+                <div className="sProduct-img">
+                    <div className="main-sProd" >
+                        <img src={Img1} alt="main" className='sProd-main'/>
                     </div>
-                    ( 27 customer reviews )
-                </div>
 
-                <h3>$ {object.price}</h3>
-
-                <p>
-                  {
-                      data.map((item)=>{
-                          return(
-                                <li key={item.index} style={{"marginTop": "10px"}}>
-                                    {item}
-                                </li>
-                          )
-                      })
-                  }
-                </p>
-
-                <div className="additional-details">
-                    <div className="add-detail1">
-                        <label htmlFor="available">Available:</label>
-                        <label htmlFor="brand">Brand:</label>
-
-                    </div>
-                    <div className="add-detail2">
-                       <li style={{"listStyle": "none"}}> In Stock</li>
-
-                        <li style={{"listStyle": "none"}}>{object.brand}</li>
+                    <div className="sProduct-side-img">
+                        <img src={Img1} alt="side1" />
+                        <img src={Img1} alt="side2" />
+                        <img src={Img1} alt="side3" />
                     </div>
                 </div>
-
-                <hr />
-
-                <div className="sProduct-colors">
-                    <h4>Colors:</h4>
-                    <div className="sProd-col">
-                        <li>{object.color}</li>
-                        
-                    </div>
-                </div>
-
                 
+                <div className="sProduct-details">
+                    <h1>{object.title}</h1>
 
-                <NavLink to="/cart" onClick={handleCart}>
-                    <button style={
-                        {"marginTop": "20px"}
-                    }>ADD TO CART</button>
-                </NavLink>
+                    <div className="rating">
+                        <div className="rating-star">
+                            {final} 
+                        </div>
+                        ( 27 customer reviews )
+                    </div>
+
+                    <h3>$ {object.price}</h3>
+
+                    <p>
+                    {
+                        data.map((item)=>{
+                            return(
+                                    <li key={item.index} style={{"marginTop": "10px"}}>
+                                        {item}
+                                    </li>
+                            )
+                        })
+                    }
+                    </p>
+
+                    <div className="additional-details">
+                        <div className="add-detail1">
+                            <label htmlFor="available">Available:</label>
+                            <label htmlFor="brand">Brand:</label>
+
+                        </div>
+                        <div className="add-detail2">
+                        <li style={{"listStyle": "none"}}> In Stock</li>
+
+                            <li style={{"listStyle": "none"}}>{object.brand}</li>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div className="sProduct-colors">
+                        <h4>Colors:</h4>
+                        <div className="sProd-col">
+                            <li>{object.color}</li>
+                            
+                        </div>
+                    </div>
+
+                    
+
+                    <NavLink to="/cart" onClick={handleCart}>
+                        <button style={
+                            {"marginTop": "20px"}
+                        }>ADD TO CART</button>
+                    </NavLink>
+                
+                   
+                </div>
             </div>
+
+
         </div>
 
         <Footer/>

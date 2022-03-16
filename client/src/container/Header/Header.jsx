@@ -5,6 +5,7 @@ import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCartShopping, faBars, faXmark, faSignIn, faSignOut, faPersonDotsFromLine} from '@fortawesome/free-solid-svg-icons';
 import "./header.css";
 
+
 export default function Header () {
     const [ac, setAc]= useState(faBars);
     const size =window.innerWidth;
@@ -40,10 +41,9 @@ export default function Header () {
                 });
                 const res = await data.json();
 
-                setToken(res.token);
-    
+                setToken(res);
             }catch(err){
-                console.log(err);
+                setToken(null)
             }
         };
     
@@ -66,7 +66,6 @@ export default function Header () {
           }).then(resObj =>{
             setUser(resObj.user);
             setImg(resObj.user.photos[0].value);
-            setToken(true)
           }).catch(error=>{
             console.log(error);
           })
@@ -102,21 +101,25 @@ export default function Header () {
         try {
             setToken(null);
             
-            const data = await fetch("/user/logout",{
-                method: "GET",
-                credentials: "include"
-            });
-            await data.json();
-            if(data.status === 200){
-                navigate('/login');
+            if(token){
+                const data = await fetch("/user/logout",{
+                    method: "GET",
+                    credentials: "include"
+                });
+                await data.json();
             }
+            
+            if(user){
+                window.open("http://localhost:5000/auth/logout", "_self");
+            }
+
         } catch (error) {
             console.log(error);
         }
     };
 
     const UserStatus =()=>{
-        if(token){
+        if(token || user){
             return(
                 <>
                     <NavLink to ='/cart' className="cartLink1"  style={{"textDecoration": "none","color":"#0008"}}>
@@ -129,9 +132,10 @@ export default function Header () {
                     <div className="user-login-details">
                         <img src={loginImg} alt="user pic" className='login-user-image'/>
                         <div className="user-login-details2">
-                            {user? user.displayName || user.Fname: null}
+                            {user? user.displayName || user.username: null}
+                            {token? token.user.Fname: null}
 
-                            <li onClick={logout} className="cartLink1"  style={{"textDecoration": "none","color":"#0008", "cursor": "pointer"}}>
+                            <li onClick={logout} className="cartLink1"  style={{"textDecoration": "none","background":"Red" ,"color":"#0008", "cursor": "pointer"}}>
                                 Logout
                                 <FontAwesomeIcon icon={faSignOut} className='fa-header'></FontAwesomeIcon>
                             </li>
@@ -159,6 +163,7 @@ export default function Header () {
         }
     };
 
+    // console.log(user)
    
 
   return (

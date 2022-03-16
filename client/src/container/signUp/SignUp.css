@@ -1,9 +1,11 @@
 .sign-wrapper{
     height: 94%;
-    width: 60%;
+    width: 70%;
+    transition: .3s;
 }
 
 .sign-wrapper form{
+    transition: .3s;
     margin-top: -30px;
 }
 .sign-wrapper h3{
@@ -62,5 +64,27 @@
     width: 100%;
     object-fit: cover;   
     border-top-left-radius: 10px; 
+    transition: .3s;
     border-bottom-left-radius: 10px; 
+}
+
+
+
+@media screen and (max-width: 870px) {
+    .sign-wrapper{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 640px) {
+    .sign-wrapper{
+        width: 96%;
+    }
+}
+@media screen and (max-width: 550px) {
+    .sign-wrapper .signImg{
+        width: 0%;
+    }
+    .sign-wrapper form{
+        width: 100%;
+    }
 }

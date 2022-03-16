@@ -6,12 +6,15 @@ const bcrypt = require("bcryptjs");
 
 accessRouter.get("/info", auth , async (req, res)=>{
     try{
-
-        res.status(200).json({
-            token:req.token,
-            user: req.rootUser,
-            id: req.userId
-        })
+        if(req.token){
+            res.status(200).json({
+                token:req.token,
+                user: req.rootUser,
+            })
+        }
+        else{
+            res.status(400).json({message: "please login"})
+        }
     }catch(error){
         res.status(400).json({
             message: error
@@ -90,8 +93,7 @@ accessRouter.route("/signup")
 });
 
 accessRouter.get('/logout', (req, res) => {
-    req.logout();
-    res.clearCookie('jwtEcommerce', {path: '/'});
+    res.clearCookie('jwtEcommerce', {path: '/'}); 
     res.status(200).json({
             message: "Done!"
         });

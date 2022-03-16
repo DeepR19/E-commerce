@@ -16,7 +16,7 @@
     border-radius: 10px;
     display: flex;
     align-items: center;
-
+    transition: .4s;
 }
 
 .login-left,
@@ -92,6 +92,7 @@
     outline: none;
     margin: 10px 0;
     border-bottom: 1px solid #000;
+    transition: .4s;
 }
 
 .login-right form button{
@@ -108,4 +109,37 @@
 }
 .login-right form button:hover{
     color: #fff;
+}
+
+
+@media screen and (max-width: 900px) {
+    .login-wrapper{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 670px) {
+    .login-wrapper{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 570px) {
+    .login-wrapper{
+        height: 69vh;
+        flex-direction: column-reverse;
+    }
+    .login-left{
+        height: 30vh;
+    }
+    .login-line{
+        /* display: none/; */
+        margin-top: 20px;
+        width: 90%;
+        height: 1px;
+    }
+}
+@media screen and (max-width: 470px) {
+    .login-right{
+        width: 100%;
+        /* background-color: red; */
+    }
 }

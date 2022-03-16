@@ -1,11 +1,19 @@
 .sProduct-container{
     height: max-content;
     width: 98%;
+    /* display: flex; */
+    /* background: var(--imageBg); */
+    /* padding: 20px; */
+}
+.sProd-data{
+    height: 100%;
+    width: 100%;
     display: flex;
     background: var(--imageBg);
     padding: 20px;
 }
 .sProduct-img{
+    position: sticky;
     height: 100%;
     flex: .8;
     display: flex;
@@ -135,15 +143,48 @@
 .sProduct-details button:hover{
     color: #fff;
 }
+.itm-review{
+    position: relative;
+    margin-top: 20px;
+    height: 100px;
+    width: 260px;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    /* overflow-y: scroll; */
 
+}
+.itm-review input{
+    height: 30px;
+
+    border: 1px solid #0002;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+.review-user-container{
+    height: 300px;
+    width: 90%;
+    padding: 10px 20px;
+    padding-top: 0;
+    overflow-y: scroll;
+    box-shadow: inset 0 2px 3px #0005;
+}
+.review-user-container h2{
+    color: var(--button);
+    height: 50px;
+    margin-top: 1px;
+    border-bottom: 1px solid #0005;
+}
 
 @media screen and (max-width: 690px) {
-    .sProduct-container{
+    .sProd-data{
         flex-direction: column;
     }
 }
 @media screen and (max-width: 400px) {
-    .sProduct-container{
+    .sProd-data{
         font-size: .8em;
     }
     .main-sProd{

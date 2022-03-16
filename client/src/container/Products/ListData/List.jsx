@@ -10,35 +10,54 @@ import Data from "./productData/Data";
 
 import './list.css';
 
-export default function List() {
+export default function List(data) {
 
   const [learn, setLearn] = useState();
-  const [mount, setMount] = useState(true);
+  const [learn1, setLearn1] = useState();
+  const [sort1, setSort] = useState(null);
+  const [me , setMe] = useState(true)
 
-  const checkUser = async ()=>{
-    try{
-        const res = await fetch("/data",{
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            } 
-        });
-        const data = await res.json();
-
-        setLearn(data);
-        setMount(false);
-
-    }catch(e){
-        console.log("error",e);
-    }
-  }
 
   useEffect(()=>{
+    console.log(!data)
+    if(!me && !data){
+      if( data.data.ok){
+        setLearn(learn1)
+        return
+      }
+      if(data.data){
+        setLearn(data.data);
+      }
+    }
+  },[data.data , data, learn1, me])
+
+
+  useEffect(()=>{
+    const checkUser = async ()=>{
+      try{
+        if(me){
+          const res = await fetch("/data",{
+              method: "GET",
+              headers: {
+                  "Content-Type": "application/json"
+              } 
+          });
+          const data = await res.json();
+
+          setLearn(data.data);
+          setLearn1(data.data);
+        }
+      }catch(e){
+          console.log("error",e);
+      }
+    }
+
     checkUser();
-      return(
-        learn
-      );
-  },[learn,mount]);
+
+    return(
+      setMe(false)
+    )
+  },[]);
   
 
   const handleBars1 =()=>{
@@ -48,11 +67,37 @@ export default function List() {
   const handleBars2 =()=>{
     const dov = document.querySelector(".product-list-content");
     dov.classList.add("active");
-    // console.log(learn.data[0]._id)
   };
 
- 
 
+  // useEffect(()=>{
+  //     const handle = async()=>{
+  //       try {
+  //         // console.log(sort1);
+  //         const res = await fetch("/data",{
+  //           method: "POST",
+  //           headers: {
+  //               "Content-Type": "application/json"
+  //           } ,
+  //           body: JSON.stringify({sort1})
+  //       });
+  //       await res.json();
+
+  //       } catch (error) {
+  //       console.log(error); 
+  //       }
+  //     }
+  //   handle();
+  // },[sort1]);
+
+  const sortData =async (e)=>{
+    
+    const price = e.target.value;
+    setSort(price);
+    
+  }
+
+ 
   return (
     <div className="product-list">
         <div className="prod-list-header">
@@ -72,7 +117,7 @@ export default function List() {
 
           <div className="prod-list-sort">
             <p>Sort By</p>
-            <select name="sort-price" id="">
+            <select name="sort-price" onClick={sortData} id="priceSort" >
               <option value="low">Price (Lowest)</option>
               <option value="high">Price (Highest)</option>
             </select>
@@ -82,8 +127,8 @@ export default function List() {
       {/*active class for product-list-content  */}
       <div className="product-list-content">
           {
-            learn && learn.data.length >0 ? 
-            learn.data.map(item=>
+            learn && learn.length >0 ? 
+            learn.map(item=>
             <NavLink to={`/product/${item._id}`} className='prod-page-data'>
                 <Data name={item.title}
                 key={item._id}
@@ -103,51 +148,6 @@ export default function List() {
           }
           
           </div>
-          {/* <Data name="coffee"
-            catogery="Bedroom"
-            img={coffee}
-            detail="Coffee"
-            shipping="none"
-            color="red"
-            company="Oppo"
-            price="505.99"/>
-
-          <Data name="alarm"
-            catogery="Office"
-            img={alarm}
-            company="boat"
-            color="red"
-            shipping="free"
-            detail="alarm"
-            price="405.99"/>
-
-          <Data name="light"
-            catogery="Office"
-            img={light}
-            company="Philips"
-            shipping="none"
-            color="green"
-            detail="light"
-            price="735.99"/>
-
-          <Data name="battery"
-            catogery="Bedroom"
-            img={battery}
-            company="Oppo"
-            color="black"
-            detail="battery"
-            shipping="free"
-            price="605.99"/>
-
-          <Data name="compass"
-            catogery="Bedroom"
-            img={compass}
-            company="samsung"
-            shipping="free"
-            color="yellow"
-            detail="compass"
-            price="903.99"/>
-        */}
 
     </div>
   )

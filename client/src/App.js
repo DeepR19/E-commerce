@@ -15,9 +15,10 @@ const title= "E-Commerce | DeepR19"
 function App() {
 
   const [user, setUser] = useState(null);
-  const [user1, setUser1] = useState(null);
+  const [state, setState] = useState(true);
 
   document.title = title;
+  
   useEffect(()=>{
     const getUser = ()=>{
       fetch("http://localhost:5000/auth/login/success",{
@@ -32,15 +33,19 @@ function App() {
         if(response.status === 200) return response.json();
         throw new Error("authentication failed");
       }).then(resObj =>{
-        setUser1(resObj.user);
+        setUser(resObj.user);
       }).catch(error=>{
         console.log(error);
       })
     };
 
-
-    getUser();
-  },[])
+    if(state){
+      getUser();
+    }
+    return(
+      setState(false)
+    )
+  },[state])
 
   useEffect(()=>{
     const handle = async ()=>{
@@ -52,20 +57,29 @@ function App() {
                 },
                 credentials: "include"
             });
+            console.log()
+            
+            if(data.status === 401){
+              console.warn("please login")
+              return;
+            }
+
             const res = await data.json();
             if(data.status === 200){
-              setUser(res);
+              state?setUser(res):setUser(null)
             }
         }catch(err){
             setUser(null)
-            console.log("aoo",err);
+            // console.log("aoo",err);
         }
     };
 
     handle();
-},[user]);
+    return(
+      setState(false)
+    )
+},[user, state]);
   
-// console.log("user",user.user._id)
   return (
     <div className="App">
       <Router>
